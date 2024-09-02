@@ -1,6 +1,6 @@
 from SportsImageClassifier.constants import *
 from SportsImageClassifier.utils.common import read_yaml, create_directories
-from SportsImageClassifier.entity.config_entity import DataIngestionConfig
+from SportsImageClassifier.entity.config_entity import DataIngestionConfig, PrepareBaseModelConfig
 
 
 class ConfigurationManager:
@@ -29,3 +29,26 @@ class ConfigurationManager:
         )
 
         return data_ingestion_config
+    
+    
+    def get_prepare_base_model_config(self) -> PrepareBaseModelConfig:
+        config = self.config.prepare_base_model
+        
+        create_directories([config.root_dir])
+
+        prepare_base_model_config = PrepareBaseModelConfig(
+            root_dir=Path(config.root_dir),
+            base_model_path=Path(config.base_model_path),
+            updated_base_model_path=Path(config.updated_base_model_path),
+            params_image_size=self.params.IMAGE_SIZE,
+            params_learning_rate=self.params.LEARNING_RATE,
+            params_include_top=self.params.INCLUDE_TOP,
+            params_weights=self.params.WEIGHTS,
+            params_classes=self.params.CLASSES,
+            params_random_rotation=self.params.RANDOM_ROTATION_FACTOR,
+            params_random_contrast=self.params.RANDOM_CONTRAST_FACTOR,
+            params_random_translation_width=self.params.RANDOM_TRANSLATION_WIDTH_FACTOR,
+            params_random_translation_height=self.params.RANDOM_TRANSLATION_HEIGHT_FACTOR
+        )
+
+        return prepare_base_model_config
