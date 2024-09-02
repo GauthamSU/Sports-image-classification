@@ -36,4 +36,12 @@ class TrainingConfig:
     params_batch_size: int
     params_image_size: list
     
+    
 
+@dataclass(frozen=True)
+class EvaluationConfig:
+    path_of_model: Path
+    validation_folder: Path
+    all_params: dict
+    params_image_size: list
+    params_batch_size: int
