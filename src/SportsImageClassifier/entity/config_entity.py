@@ -23,3 +23,17 @@ class PrepareBaseModelConfig:
     params_random_contrast: float
     params_random_translation_width: float
     params_random_translation_height: float
+
+
+@dataclass(frozen=True)
+class TrainingConfig:
+    root_dir: Path
+    trained_model_path: Path
+    updated_base_model_path: Path
+    training_folder: Path
+    validation_folder: Path
+    params_epochs: int
+    params_batch_size: int
+    params_image_size: list
+    
+
