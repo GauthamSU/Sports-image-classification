@@ -42,6 +42,7 @@ class TrainingConfig:
 class EvaluationConfig:
     path_of_model: Path
     validation_folder: Path
+    test_data_folder: Path
     all_params: dict
     params_image_size: list
     params_batch_size: int

@@ -1,0 +1,50 @@
+schema: '2.0'
+stages:
+  data_ingestion:
+    cmd: python src/SportsImageClassifier/pipeline/stage_01_data_ingestion.py
+    deps:
+    - path: config/config.yaml
+      hash: md5
+      md5: 475ad98e4446c46fc478522686a6e947
+      size: 647
+    - path: src/SportsImageClassifier/pipeline/stage_01_data_ingestion.py
+      hash: md5
+      md5: 8cb88bd8a72e08a43f1540c815768384
+      size: 894
+    outs:
+    - path: artifacts/data_ingestion/data
+      hash: md5
+      md5: 9db1aa55a68db0d895524537baf00f8c.dir
+      size: 452856506
+      nfiles: 14495
+  prepare_base_model:
+    cmd: python src/SportsImageClassifier/pipeline/stage_02_prepare_base_model.py
+    deps:
+    - path: config/config.yaml
+      hash: md5
+      md5: 475ad98e4446c46fc478522686a6e947
+      size: 647
+    - path: src/SportsImageClassifier/pipeline/stage_02_prepare_base_model.py
+      hash: md5
+      md5: 2dacd1c0f6d73a078eb2c346c5b4dfe2
+      size: 1019
+    params:
+      params.yaml:
+        CLASSES: 100
+        IMAGE_SIZE:
+        - 256
+        - 256
+        - 3
+        INCLUDE_TOP: false
+        LEARNING_RATE: 0.0001
+        RANDOM_CONTRAST_FACTOR: 0.1
+        RANDOM_ROTATION_FACTOR: 0.15
+        RANDOM_TRANSLATION_HEIGHT_FACTOR: 0.1
+        RANDOM_TRANSLATION_WIDTH_FACTOR: 0.1
+        WEIGHTS: imagenet
+    outs:
+    - path: artifacts/prepare_base_model
+      hash: md5
+      md5: e3d4ea896cc2e3aab50416ff99a13f8a.dir
+      size: 19703567
+      nfiles: 2

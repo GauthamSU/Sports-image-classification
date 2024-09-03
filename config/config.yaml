@@ -4,7 +4,7 @@ data_ingestion:
   root_dir: artifacts/data_ingestion
   source_URL: gpiosenka/sports-classification
   # local_data_file: C:/Users/HAPPYUSER/Documents/Web_Development/ML_AI_MLOPS/Sports-image-classification/src/SportsImageClassifier/artifacts/data_ingestion
-  unzip_dir: artifacts/data_ingestion
+  unzip_dir: artifacts/data_ingestion/data
 
 
 prepare_base_model:

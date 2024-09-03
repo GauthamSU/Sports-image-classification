@@ -19,10 +19,10 @@ class DataIngestion:
         try: 
             dataset_url = self.config.source_URL
             zip_download_dir = self.config.unzip_dir
-            os.makedirs("artifacts/data_ingestion", exist_ok=True)
+            os.makedirs(zip_download_dir, exist_ok=True)
             logger.info(f"Downloading data from {dataset_url} into file {zip_download_dir}")
 
-            kaggle.api.dataset_download_files('gpiosenka/sports-classification', Path(zip_download_dir), unzip=True)
+            kaggle.api.dataset_download_files(dataset_url, Path(zip_download_dir), unzip=True)
 
             logger.info(f"Downloaded data from {dataset_url} into file {zip_download_dir}")
 
