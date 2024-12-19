@@ -48,3 +48,69 @@ stages:
       md5: e3d4ea896cc2e3aab50416ff99a13f8a.dir
       size: 19703567
       nfiles: 2
+  training:
+    cmd: python src/SportsImageClassifier/pipeline/stage_03_model_trainer.py
+    deps:
+    - path: artifacts/data_ingestion/data
+      hash: md5
+      md5: 9db1aa55a68db0d895524537baf00f8c.dir
+      size: 452856506
+      nfiles: 14495
+    - path: artifacts/prepare_base_model
+      hash: md5
+      md5: e3d4ea896cc2e3aab50416ff99a13f8a.dir
+      size: 19703567
+      nfiles: 2
+    - path: config/config.yaml
+      hash: md5
+      md5: 475ad98e4446c46fc478522686a6e947
+      size: 647
+    - path: src/SportsImageClassifier/pipeline/stage_03_model_trainer.py
+      hash: md5
+      md5: 14bf274a4d393c5f851dba2ae84edc47
+      size: 935
+    params:
+      params.yaml:
+        BATCH_SIZE: 32
+        EPOCHS: 25
+        IMAGE_SIZE:
+        - 256
+        - 256
+        - 3
+    outs:
+    - path: artifacts/training/model.keras
+      hash: md5
+      md5: 6ac1b114b5f2979b73b7b5bb594dd865
+      size: 11143437
+  evaluation:
+    cmd: python src/SportsImageClassifier/pipeline/stage_04_model_evaluation_mlflow.py
+    deps:
+    - path: artifacts/data_ingestion/data
+      hash: md5
+      md5: 9db1aa55a68db0d895524537baf00f8c.dir
+      size: 452856506
+      nfiles: 14495
+    - path: artifacts/training/model.keras
+      hash: md5
+      md5: 6ac1b114b5f2979b73b7b5bb594dd865
+      size: 11143437
+    - path: config/config.yaml
+      hash: md5
+      md5: 475ad98e4446c46fc478522686a6e947
+      size: 647
+    - path: src/SportsImageClassifier/pipeline/stage_04_model_evaluation_mlflow.py
+      hash: md5
+      md5: ee89ca9578c1b7eac4d93cd2e5d03b45
+      size: 905
+    params:
+      params.yaml:
+        BATCH_SIZE: 32
+        IMAGE_SIZE:
+        - 256
+        - 256
+        - 3
+    outs:
+    - path: scores.json
+      hash: md5
+      md5: 8d0529433c87e77361e1244d5dc05955
+      size: 163
