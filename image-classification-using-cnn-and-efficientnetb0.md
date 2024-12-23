@@ -1,8 +1,3 @@
-# Sports-image-classification with MLflow
-
-This is a kaggle notebook to display the whole project in a single file for easier access. <br>
-The whole project is structured so that it is production ready with integration of mlflow for MLOps.
-
 ```python
 # This Python 3 environment comes with many helpful analytics libraries installed
 # It is defined by the kaggle/python Docker image: https://github.com/kaggle/docker-python
